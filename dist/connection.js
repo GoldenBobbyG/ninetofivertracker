@@ -12,6 +12,7 @@ const client = new Client({
 });
 const connectToDb = async () => {
     try {
+        console.log('connecting to the database', process.env.DB_DATABASE);
         await client.connect();
         console.log('Connected to the database');
     }
@@ -20,5 +21,4 @@ const connectToDb = async () => {
         process.exit(1);
     }
 };
-client.connect();
 export { client, connectToDb };

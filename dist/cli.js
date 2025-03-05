@@ -1,5 +1,8 @@
-import { client } from './connection.js';
+import { client, connectToDb } from './connection.js';
 import inquirer from 'inquirer';
+(async () => {
+    await connectToDb();
+})();
 function mainMenu() {
     inquirer
         .prompt({
