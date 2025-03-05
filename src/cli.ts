@@ -1,11 +1,19 @@
 import { client, connectToDb } from './connection.js';
 import inquirer from 'inquirer';
+// import logo from 'asciiart-logo';
+import table from 'console-table-printer';
+const { Table } = table;
 
 (async () => {
     await connectToDb();
 })();
 
 function mainMenu() {
+    // console.log(logo({
+    //     name:'Welcome to the Employee Tracker',
+    //     logoColor: 'red',
+    // }).render());
+
     inquirer
         .prompt({
             type: 'list',
@@ -13,7 +21,6 @@ function mainMenu() {
             message: 'What would you like to do?',
             choices: [
                 'View All Departments',
-                'View All Roles',
                 'View All Employees',
                 'Add a Department',
                 'Add a Role',
@@ -55,15 +62,30 @@ function mainMenu() {
 function viewDepartments() {
     client.query('SELECT * FROM department', function (err, res) {
         if (err) throw err;
-        console.table(res.rows);
+        // console.table(res.rows);
+        const p = new Table({
+            columns: [
+                { name: 'id', alignment: 'center', color: 'red' },
+                { name: 'name', alignment: 'center', color: 'blue' }
+            ]
+        });
+        p.addRows(res.rows);
+        p.printTable();
+        // printTable(res.rows);
         mainMenu();
     });
 }
 
 function viewRoles() {
     client.query('SELECT role.id, role.title, department.name AS department, role.salary FROM role JOIN department ON role.department_id = department.id', function (err, res) {
-        if (err) throw err;
-        console.table(res.rows);
+        if (err) throw err;const p = new Table({
+            columns: [
+                { name: 'title', alignment: 'center', color: 'red' },
+                { name: 'salary', alignment: 'center', color: 'green' }
+            ]
+        });
+        p.addRows(res.rows);
+        p.printTable();
         mainMenu();
     });
 }
@@ -76,7 +98,19 @@ function viewEmployees() {
                   JOIN department ON role.department_id = department.id 
                   LEFT JOIN employee manager ON employee.manager_id = manager.id`, function (err, res) {
         if (err) throw err;
-        console.table(res.rows);
+        const p = new Table({
+            columns: [
+                { name: 'id', alignment: 'center', color: 'white' },
+                { name: 'first_name', alignment: 'center', color: 'blue' },
+                { name: 'last_name', alignment: 'center', color: 'yellow' },
+                { name: 'title', alignment: 'center', color: 'green' },
+                { name: 'department', alignment: 'center', color: 'red' },
+                { name: 'salary', alignment: 'center', color: 'green' },
+                { name: 'manager', alignment: 'center', color: 'magenta' }
+            ]
+        });
+        p.addRows(res.rows);
+        p.printTable();
         mainMenu();
     });
 }
@@ -96,6 +130,7 @@ function addDepartment() {
             });
         });
 }
+
 
 function addRole() {
     client.query('SELECT * FROM department', function (err, res) {
