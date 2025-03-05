@@ -5,6 +5,7 @@
     "start": "node dist/cli.js"
   },
   "dependencies": {
+    "asciiart-logo": "^0.2.7",
     "dotenv": "^16.4.7",
     "inquirer": "^12.4.2",
     "pg": "^8.13.3"
