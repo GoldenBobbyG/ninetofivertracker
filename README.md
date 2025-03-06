@@ -28,6 +28,9 @@ https://drive.google.com/file/d/1f1N48UTkjlF2dl7BUsnpvyWmFb5Mh_AN/view
 ## Screenshot
 ![image](https://github.com/user-attachments/assets/1432fd16-53f1-4412-badc-174eea0febba)
 
+## Notes
+Help from Tutor Justin to setup color npm packages. Copilot to help with debugging
+
 
 
 ## License
