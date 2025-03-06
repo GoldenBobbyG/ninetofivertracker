@@ -22,6 +22,7 @@ function mainMenu() {
             choices: [
                 'View All Departments',
                 'View All Employees',
+                'View All Roles',
                 'Add a Department',
                 'Add a Role',
                 'Add an Employee',
