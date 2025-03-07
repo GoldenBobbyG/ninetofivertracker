@@ -9,13 +9,28 @@ challenge involves building a TypeScript-based command-line interface (CLI) for 
 To complete this challenge, use PostgreSQL to create the database, run a seed file to populate initial data, and install dependencies by running npm i before executing the CLI application.
 
 ## Usage
-Add in Git
-
+### **Usage Information:**  
+1. **Install Dependencies:** Run `npm i` to install all required packages.  
+2. **Set Up Database:** Use PostgreSQL to create the necessary database.  
+3. **Run Seed File:** Execute the seed script to populate the database with initial data.  
+4. **Start the CLI:** Run `node index.js` (or `ts-node index.ts` for TypeScript) to launch the application.  
+5. **Navigate the Menu:** Use the command-line interface to view, add, and update departments, roles, and employees.  
+6. **Exit the Application:** Select the **"EXIT"** option to close the program and disconnect from the database.
 ## Contribution
 None
 
 ## Tests
 Navigate the menu using the command-line interface to view add, and update departments, roles, and employees. 
+
+## Video Submission 
+https://drive.google.com/file/d/1f1N48UTkjlF2dl7BUsnpvyWmFb5Mh_AN/view
+
+## Screenshot
+![image](https://github.com/user-attachments/assets/1432fd16-53f1-4412-badc-174eea0febba)
+
+## Notes
+Help from Tutor Justin to setup color npm packages. Copilot to help with debugging
+
 
 
 ## License
