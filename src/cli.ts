@@ -1,13 +1,15 @@
+//The below files connects client and connectToDb to this file and uses teh inquier packaged needed to run our cli program. 
 import { client, connectToDb } from './connection.js';
 import inquirer from 'inquirer';
 // import logo from 'asciiart-logo';
+//This import adds a package that lets our table display the different colors. 
 import table from 'console-table-printer';
 const { Table } = table;
 
 (async () => {
     await connectToDb();
 })();
-
+// This calls our prompts to start running our program. 
 function mainMenu() {
     // console.log(logo({
     //     name:'Welcome to the Employee Tracker',
@@ -59,7 +61,7 @@ function mainMenu() {
             }
         });
 }
-
+//This function will display the departments in a table format.
 function viewDepartments() {
     client.query('SELECT * FROM department', function (err, res) {
         if (err) throw err;
@@ -76,7 +78,7 @@ function viewDepartments() {
         mainMenu();
     });
 }
-
+//This function will display the roles in a table format.
 function viewRoles() {
     client.query('SELECT role.id, role.title, department.name AS department, role.salary FROM role JOIN department ON role.department_id = department.id', function (err, res) {
         if (err) throw err;const p = new Table({
@@ -90,7 +92,7 @@ function viewRoles() {
         mainMenu();
     });
 }
-
+//This function will display the employees in a table format.
 function viewEmployees() {
     client.query(`SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, 
                   CONCAT(manager.first_name, ' ', manager.last_name) AS manager 
@@ -115,7 +117,7 @@ function viewEmployees() {
         mainMenu();
     });
 }
-
+//This function will add a department to the table.
 function addDepartment() {
     inquirer
         .prompt({
@@ -132,7 +134,7 @@ function addDepartment() {
         });
 }
 
-
+//This function will add a role to the table.
 function addRole() {
     client.query('SELECT * FROM department', function (err, res) {
         if (err) throw err;
@@ -165,7 +167,7 @@ function addRole() {
             });
     });
 }
-
+//This function will add an employee to the table.
 function addEmployee() {
     client.query('SELECT * FROM role', function (err, res) {
         if (err) throw err;
@@ -209,7 +211,7 @@ function addEmployee() {
         });
     });
 }
-
+//This function will update the employee role in the table.
 function updateEmployeeRole() {
     client.query('SELECT * FROM employee', function (err, res) {
         if (err) throw err;
